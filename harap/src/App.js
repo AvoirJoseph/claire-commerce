@@ -1,6 +1,6 @@
 import {
-  createBrowserRouter,
-  RouterProvider,
+ // createBrowserRouter,
+//   RouterProvider,
   Route,
   Routes,
   BrowserRouter,
@@ -13,19 +13,26 @@ import ProductPage from "./pasilyo/Profile/ProductPage"
 import UserProfile from "./pasilyo/Profile/UserProfile"
 import UserReviews from "./pasilyo/Profile/UserReviews"
 import FrontPage from "./pasilyo/FrontPage"
+import UserTable from "./pasilyo/UserTable"
+import AddUser from "./pasilyo/AddUser"
+import UpdateUser from "./pasilyo/UpdateUser"
 
 function App(){
   return(
-    <div classname = "App">
+
+    <div className = "App">
 
       <BrowserRouter>
         <Routes>
+          <Route path = "/Frontend" element = {<FrontPage/>} > </Route>
           <Route path = "/Cart" element = {<Cart/>} > </Route>
           <Route path = "/PaymentDetails" element = {<PaymentDetails/>} > </Route>
           <Route path = "/ProductPage" element = {<ProductPage/>} > </Route>
           <Route path = "/UserProfile" element = {<UserProfile/>} > </Route>
           <Route path = "/UserReviews" element = {<UserReviews/>} > </Route>
-          <Route path = "/FrontPage" element = {<FrontPage/>} > </Route>
+          <Route path = "/" element = {<UserTable/>} > </Route>
+          <Route path = "/AddUser" element = {<AddUser/>} > </Route>
+          <Route path = "/UpdateUser/:id" element = {<UpdateUser/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
