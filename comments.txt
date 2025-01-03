@@ -32,8 +32,14 @@ END //
 DELIMITER ;
 
 1. App.jsx - Login/Sign-Up //
-2. FrontPage.jsx - Front Page //
+    1.1 Admin Page //
+    1.1.1 AddUser.jsx
+        1.1.1.1 Adding, Deleting, Updating Funcitonalities
+        1.1.1.2 UpdateUser.jsx
+
+2. FrontPage.jsx - Front Page // User front page
     2.1 Popular Deals.jsx - See All Feature in the front pagess
+
 3. Want to be a Merchant.jsx - Merchant Sign-Up auto-approve
     3.1 Merchant Profile - Includes Add or Delete of Items
 4. User Profile.jsx - Profile of the User //

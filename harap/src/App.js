@@ -7,6 +7,7 @@ import {
   // Link,
 } from "react-router-dom"
 
+import FrontPageNoLogIn from "./pasilyo/FrontPageNoLogIn"
 import Cart from "./pasilyo/Profile/Cart"
 import PaymentDetails from "./pasilyo/Profile/PaymentDetails"
 import ProductPage from "./pasilyo/Profile/ProductPage"
@@ -24,7 +25,8 @@ function App(){
 
       <BrowserRouter>
         <Routes>
-          <Route path = "/Frontend" element = {<FrontPage/>} > </Route>
+          <Route path = "/" element = {<FrontPageNoLogIn/>}></Route>
+          <Route path = "/FrontPage" element = {<FrontPage/>} > </Route>
           <Route path = "/Cart" element = {<Cart/>} > </Route>
           <Route path = "/PaymentDetails" element = {<PaymentDetails/>} > </Route>
           <Route path = "/ProductPage" element = {<ProductPage/>} > </Route>
@@ -35,6 +37,10 @@ function App(){
           <Route path = "/UpdateUser/:id" element = {<UpdateUser/>}></Route>
         </Routes>
       </BrowserRouter>
+
+      <></>
+
+
     </div>
   );
 }
