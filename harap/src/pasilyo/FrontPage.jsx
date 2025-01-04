@@ -1,11 +1,76 @@
-import React from "react"
+import React from "react";
+import './AnotherCSS.css';
+import { Link } from "react-router-dom";
+
+import Clair from "./Images/CLAIR-Logo.png";
+import Profile from "./Images/Profile.png";
+import Search from "./Images/Search Logo.png";
+import BGVideo from "./Images/BG-Video.mp4";
 
 const FrontPage = () => {
-    
 
-    return (
-        <div> Front Page </div>
-    )
+  const reload = () => {
+    window.location.reload();
+  }
+
+  const clickProfileLogo = () => {
+    window.location.href = "http://localhost:3000/Profile/?";
+  }
+
+  return (
+    <div className = "background-background-background"> {/* Just Black */}
+      <div className = "full-page">
+        <div className = "navbar">
+
+          {/* Nav Bar */}
+          <div className = "logo-png">
+            <img src={Clair} title = "CLAIR LOGO" alt= "Clair Logo PNG"
+              id = "logo"
+              onClick={reload}>
+            </img>
+
+            <span> | C L A I R </span>
+
+          </div>
+
+          <div className = "navbar-right-side">
+            <ul>
+              <li> <Link to = "/LogInPage"> Home </Link></li>
+              <li> <Link to = "/LogInPage"> Cart </Link></li>
+              <li> <Link to = "/LogInPage"> <span>Log In | Sign Up</span> </Link></li>
+            </ul>
+          </div>
+
+          {/* Profile Dropdown */}
+          <div className= "profile-logo-png">
+            <img src={Profile} title= "Profile LOGO" alt= "Profile Logo"
+              id= "profile-logo"
+              onClick={clickProfileLogo}>
+            </img>
+          </div>
+
+        </div> {/* Nav Bar */}
+
+            <div className= "body-below-nav">
+                <video autoPlay muted loop preload= "auto" id= "bgVideo">
+                    <source src={BGVideo} type= "video/mp4" />
+                </video>
+
+                <div className= "search-bar">
+                    <input type= "text" placeholder= "Search for excellence." />
+                    <img src={Search} alt= "Search" id= "search" />
+                </div>
+
+                <div className = "product-showcase">
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+  )
 }
 
-export default FrontPage
+export default FrontPage;

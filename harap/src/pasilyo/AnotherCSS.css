@@ -3,32 +3,54 @@
   padding: 0;
 }
 
+body, html {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* Allow scrolling */
+}
+
 .background-background-background {
-  height: 140px;
+  flex: 1;
+  position: relative;
+  background-color: white;
+  z-index: 1;
+  border-top: 160px;
+}
+
+.full-page {
+  flex: 1; /* Ensure the full page grows to fill the space */
+  position: relative;
   background-color: black;
+  z-index: 1;
+  border-top: 160px;
 }
 
 .navbar {
-  background-color: white;
-  height: 140px;
-  border-radius: 7vh 7vh 0px 0px;
+  background-color: rgb(234, 223, 223);
+  height: 160px;
+  border-radius: 9vh 9vh 0 0;
   overflow: hidden;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+  z-index: 2; /* Ensure the navbar is in front of the video */
+  position: fixed;
+  width:97vw;
+  border-top: 20px;
+  margin-left:1vw;
 }
 
 .logo-png {
   margin-left: 10px;
-  margin-top: 20px;
-  padding-top: 25px;
-  padding-bottom: 25px; 
+  padding-top: 15px;
+  padding-bottom: 25px;
   display: flex;
   align-items: center;
   cursor: pointer;
   background-color: bisque;
-  border-radius: 70px 0px 70px 0px;
+  border-radius: 70px 0 70px 0;
   width: 325px;
 }
 
@@ -55,7 +77,7 @@
 
 .profile-logo-png:hover {
   cursor: pointer;
-  background-color: bisque;
+  background-color: rgb(245, 189, 121);
   border-radius: 100px;
 }
 
@@ -83,8 +105,7 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-
-.navbar-right-side a span{
+.navbar-right-side a span {
   margin-right: 5px;
 }
 
@@ -93,42 +114,152 @@
   border-radius: 10px;
   color: white;
 }
-/*
-.background-video{
-  background-clip:
-}
-*/
-.search-bar{
-  display: flex;
-  padding-top: 10vh;
-  padding-left: 20vh;
+
+.body-below-nav {
+  position: relative;
+  z-index: 1; /* Ensure content is in front of the video */
+  padding: 20px; 
+  flex: 1;
+  height: 100vh;
 }
 
-.search-bar input{
-  
-  width:0px;
-  height:0px;
-  
+#bgVideo {
+  position: absolute;
+  width: 80%;
+  padding-left: 10%;
+  padding-right: 10%;
+  z-index: -1; /* Ensure video is in the background */
+  padding-top: 150px;
+  opacity: 75%;
+  object-fit: cover;
+  margin-top: auto;
+}
+
+.search-bar {
+  outline: none;
+  position: relative;
+  text-align: center;
+  margin-top: 100px;
+  z-index: 2; 
+  width: 80%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
   padding: 10px;
-  font-size: 16px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 350px;
+  margin-top: 400px;
+}
 
-  border-radius: 30px; 
+.search-bar input {
+  height: 0px;
+  width: calc(50% - 50px);
+  font-size: 16px;
+  border-radius: 30px 0 0 30px;
   border: 1px solid #ccc;
-  opacity: 35;
+  opacity: 0.8;
 }
 
-.search-bar input:focus{
-  height: 3vh;
-  width: 150vh;
+.search-bar input:focus {
   transition: width 1s ease;
-  opacity: 100;
-
+  opacity: 1;
+  font-size: 16px;
+  padding: 20px;
+  width: calc(100% + 200px);
 }
 
-#search{
-  width: 24px;
-  height: 24px; 
-  margin-left: 10px; 
-  cursor: pointer; 
-  padding-left: 20px; 
+.search-bar input:blur {
+  opacity: 0;
+  transition: ease-out 1s;
+}
+
+#search {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: bisque;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.productShowCase{
+  display:flex;
+  justify-content: space-around;
+}
+
+.productFrontColumn{
+  flex: 1; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 20px;
+}
+
+footer {
+  color: black;
+  background-color: rgb(234, 223, 223);
+  min-height: 50px;
+  background: PapayaWhip;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: absolute;
+  bottom: -10;
+  z-index: 2;
+  width: 100%;
+}
+
+footer img{
+  height: 20px;
+}
+
+
+/* Unique to Log-In/Sign-Up Page*/
+
+.loginsignup-form h1{
+  padding-left: 175px;
+  font-size:xx-large;
+}
+
+.loginsignup-form{
+  background-color: white;
+  border-style: groove;
+  border-radius: 25px;
+  height: 500px;
+  width: 500px;
+  padding: 100px;
+  margin: 10vw 30vw 10vw 30vw;
+  margin-top: 3vw;
+  z-index: 1;
+}
+
+.loginsignup-form input{
+  margin: 45px;
+  height: 30px;
+  width: 300px;
+
+  cursor:text;
+  background-color: rgb(223, 217, 211);
+  border-radius: 30px;
+  padding: 20px;
+  padding-left: 70px;
+}
+
+.loginsignup-form button{
+  display:flexbox;
+  padding: 15px;
+  margin-left: 100px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#signinbutton {
+  padding-left: 120px;
+  padding-right: 120px;
 }

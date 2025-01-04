@@ -72,6 +72,13 @@ Table: product
             - productID
             - productName
             - productPrice
+            - productTag1
+            - productTag2
+            - productTag3
+            - productDescription
+            - productQuantity
+            - productImages
+            - userID (Merchant's ID) FK references: usertable
 
 Table: productList
         has:
@@ -83,6 +90,8 @@ Table: productList
             - itemImages
             - userReviews
             - userLikes
-            - userID (Merchant's ID) FK references: usertable
 
+            
 Table: followList            
+
+Create tokens ata yun to verify if logged in na si user or just browsing with no account

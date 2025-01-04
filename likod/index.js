@@ -1,6 +1,7 @@
 import express from "express"
 import mysql from "mysql"
 import cors from "cors"
+import bcrypt from "bcrypt"
 
 const port = 8800
 const app = express()
@@ -75,7 +76,29 @@ app.put("/userTable/:userID", (req, res) => {
     })
 })
 
- 
+
+app.post("/login", (req, res) => {
+    const {userName, password} = req.body
+    const query = "SELECT * FROM usertable WHERE userName = ?"
+
+    db.query(query, [userName], (err, data) => {
+        if(err)
+            return res.status(500).json(err);
+        if(data.length === 0)
+            return res.status(404).json("User not found")
+
+        const user = data[0]
+
+        bcrypt.compare(password, user.password, (err, result) =>{
+            if (err)
+                return res.status(500).json(err)
+            if(!result)
+                return res.status(401).json("Invalid Password")
+            res.status(200).json({success: true, message: "Logged in successfully."})
+        })
+    })
+})
+
 app.listen(port, () => {
     console.log("Server connected to port", port)
 })

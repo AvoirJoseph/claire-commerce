@@ -17,6 +17,8 @@ import FrontPage from "./pasilyo/FrontPage"
 import UserTable from "./pasilyo/UserTable"
 import AddUser from "./pasilyo/AddUser"
 import UpdateUser from "./pasilyo/UpdateUser"
+import LogInPage from "./pasilyo/LogInPage"
+import SignInPage from "./pasilyo/SignInPage"
 
 function App(){
   return(
@@ -30,11 +32,14 @@ function App(){
           <Route path = "/Cart" element = {<Cart/>} > </Route>
           <Route path = "/PaymentDetails" element = {<PaymentDetails/>} > </Route>
           <Route path = "/ProductPage" element = {<ProductPage/>} > </Route>
-          <Route path = "/UserProfile" element = {<UserProfile/>} > </Route>
+          <Route path = "/UserProfile/:userName" element = {<UserProfile/>} > </Route>
           <Route path = "/UserReviews" element = {<UserReviews/>} > </Route>
-          <Route path = "/" element = {<UserTable/>} > </Route>
+          <Route path = "/UserTable" element = {<UserTable/>} > </Route>
           <Route path = "/AddUser" element = {<AddUser/>} > </Route>
           <Route path = "/UpdateUser/:id" element = {<UpdateUser/>}></Route>
+          <Route path = "/LogInPage/" element = {<LogInPage/>}></Route>
+          <Route path = "/SignInPage/" element = {<SignInPage/>}></Route>
+          
         </Routes>
       </BrowserRouter>
 

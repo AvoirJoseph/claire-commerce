@@ -36,7 +36,8 @@ import { useNavigate} from "react-router-dom"
             <input type="text" placeholder="New User Name" onChange={handleChange} name="userName" /> 
             <input type="password" placeholder="New Password" name="password" onChange={handleChange} /> 
             {/* Add input validation or password strength and re-enter password mech */} 
-            <input type="text" placeholder="Image" name="image" onChange={handleChange} /> <button onClick={handleClick}>Add</button> </div>
+            <input type="text" placeholder="Image" name="image" onChange={handleChange} /> 
+            <button onClick={handleClick}>Add</button> </div>
         )
     }
 
