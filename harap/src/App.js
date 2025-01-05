@@ -8,17 +8,21 @@ import {
 } from "react-router-dom"
 
 import FrontPageNoLogIn from "./pasilyo/FrontPageNoLogIn"
-import Cart from "./pasilyo/Profile/Cart"
-import PaymentDetails from "./pasilyo/Profile/PaymentDetails"
-import ProductPage from "./pasilyo/Profile/ProductPage"
-import UserProfile from "./pasilyo/Profile/UserProfile"
-import UserReviews from "./pasilyo/Profile/UserReviews"
+import UserCart from "./pasilyo/UserCart"
+import PaymentDetails from "./pasilyo/PaymentDetails"
+import ProductPage from "./pasilyo/ProductPage"
+import UserProfile from "./pasilyo/UserProfile"
+import UserReviews from "./pasilyo/UserReviews"
 import FrontPage from "./pasilyo/FrontPage"
 import UserTable from "./pasilyo/UserTable"
 import AddUser from "./pasilyo/AddUser"
 import UpdateUser from "./pasilyo/UpdateUser"
 import LogInPage from "./pasilyo/LogInPage"
 import SignInPage from "./pasilyo/SignInPage"
+import ProductList from "./pasilyo/ProductList"
+import ProductUpload from "./pasilyo/ProductUpload"
+import AdminViewFrontPage from "./pasilyo/AdminViewFrontPage"
+import UpdateProduct from "./pasilyo/UpdateProduct"
 
 function App(){
   return(
@@ -29,7 +33,7 @@ function App(){
         <Routes>
           <Route path = "/" element = {<FrontPageNoLogIn/>}></Route>
           <Route path = "/FrontPage" element = {<FrontPage/>} > </Route>
-          <Route path = "/Cart" element = {<Cart/>} > </Route>
+          <Route path = "/UserCart" element = {<UserCart/>} > </Route>
           <Route path = "/PaymentDetails" element = {<PaymentDetails/>} > </Route>
           <Route path = "/ProductPage" element = {<ProductPage/>} > </Route>
           <Route path = "/UserProfile/:userName" element = {<UserProfile/>} > </Route>
@@ -39,6 +43,10 @@ function App(){
           <Route path = "/UpdateUser/:id" element = {<UpdateUser/>}></Route>
           <Route path = "/LogInPage/" element = {<LogInPage/>}></Route>
           <Route path = "/SignInPage/" element = {<SignInPage/>}></Route>
+          <Route path = "/ProductList/" element = {<ProductList/>}></Route>
+          <Route path = "/ProductUpload/" element = {<ProductUpload/>}></Route>
+          <Route path = "/AdminViewFrontPage/" element = {<AdminViewFrontPage/>}></Route>
+          <Route path = "/UpdateProduct/:productID" element = {<UpdateProduct/>}></Route>
           
         </Routes>
       </BrowserRouter>

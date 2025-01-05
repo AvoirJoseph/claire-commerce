@@ -18,7 +18,6 @@ const SignInPage = () => {
     const[userTable, setUserTable] = useState({
         userName: "",
         password: "",
-        image: "",
     
     });
 

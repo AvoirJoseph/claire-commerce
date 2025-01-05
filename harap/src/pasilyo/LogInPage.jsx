@@ -29,20 +29,26 @@ const LogInPage = () => {
 
   const navigate = useNavigate();
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    try {
-      
-      const response = await axios.post("http://localhost:8800/login", userTable);
-      if (response.data.success) {
-        navigate(`/userprofile/${userTable.userName}`);
-      } else {
-        alert("Invalid username or password");
+    const handleClick = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await axios.post("http://localhost:8800/login", userTable);
+        if (response.data.success) {
+          if (response.data.isAdmin) {
+            // Redirect to Admin page
+            navigate("/AdminViewFrontPage");
+          } else {
+            // Redirect to regular user page
+            navigate("/frontpage");
+          }
+        } else {
+          alert("Invalid username or password");
+        }
+      } catch (err) {
+        alert("Error: " + err.message);
       }
-    } catch (err) {
-      alert(err);
-    }
-  };
+    };
+    
   const handleClickSignIn = () => {
     window.location.href = "http://localhost:3000/SignInPage"
   }
@@ -51,12 +57,12 @@ const LogInPage = () => {
   };
 
   return (
-    <div className="background-background-background"> {/* Just Black */}
-      <div className="full-page">
-        <div className="navbar">
+    <div className = "background-background-background"> {/* Just Black */}
+      <div className = "full-page">
+        <div className = "navbar">
           {/* Nav Bar */}
-          <div className="logo-png">
-            <img src={Clair} title="CLAIR LOGO" alt="Clair Logo PNG" id="logo" onClick={reload} />
+          <div className = "logo-png">
+            <img src = {Clair} title = "CLAIR LOGO" alt = "Clair Logo PNG" id = "logo" onClick = {reload} />
             <span> | C L A I R </span>
           </div>
 
@@ -69,22 +75,22 @@ const LogInPage = () => {
           </div>
 
           {/* Profile Dropdown */}
-          <div className="profile-logo-png">
-            <img src={Profile} title="Profile LOGO" alt="Profile Logo" id="profile-logo" onClick={clickProfileLogo} />
+          <div className = "profile-logo-png">
+            <img src = {Profile} title = "Profile LOGO" alt="Profile Logo" id = "profile-logo" onClick = {clickProfileLogo} />
           </div>
         </div> {/* Nav Bar */}
 
         <div className="body-below-nav">
-          <video autoPlay muted loop preload="auto" id="bgVideo">
-            <source src={BGVideo} type="video/mp4" />
+          <video autoPlay muted loop preload = "auto" id = "bgVideo">
+            <source src = {BGVideo} type = "video/mp4" />
           </video>
 
           <div className="loginsignup-form">
             <h1> Log-In </h1>
-            <input type="text" placeholder="Enter your username" onChange={HandleChange} name="userName" />
-            <input type="password" placeholder="Enter your password" onChange={HandleChange} name="password" />
-            <button onClick={handleClick}> Log In </button>
-            <button onClick={handleClickSignIn}> Sign In </button>
+            <input type = "text" placeholder = "Enter your username" onChange = {HandleChange} name = "userName" />
+            <input type = "password" placeholder = "Enter your password" onChange = {HandleChange} name = "password" />
+            <button onClick = {handleClick}> Log In </button>
+            <button onClick = {handleClickSignIn}> Sign In </button>
           </div>
         </div>
 

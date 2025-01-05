@@ -40,6 +40,7 @@ body, html {
   width:97vw;
   border-top: 20px;
   margin-left:1vw;
+  box-shadow: 10px 10px 5px rgb(85, 86, 86)
 }
 
 .logo-png {
@@ -62,8 +63,9 @@ body, html {
 
 .logo-png span {
   font-size: 2vh;
-  margin-left: 1vw;
+  margin-left: 2vw;
   margin-bottom: 1vh;
+  align-content: center;
 }
 
 .profile-logo-png img {
@@ -189,15 +191,57 @@ body, html {
 
 .productShowCase{
   display:flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  background-color: rgb(191, 191, 191);
+  min-height: 75vh;
+  padding: 100px;
+
 }
 
 .productFrontColumn{
-  flex: 1; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  gap: 20px;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10vw;
+  margin: 2vw;
+  border-color:black;
+  border: 20px;
+}
+
+.productFrontRow{
+  flex: 1 1 calc(20% - 20px);
+  box-sizing: border-box; 
+  text-align: center;
+  padding: 50px;
+  border: 20px;
+  border-color: black;
+  border-style: groove;
+  border-radius: 15px;
+  margin: 30px;
+  cursor:pointer;
+  box-shadow: 10px whitesmoke;
+}
+
+.productFrontRow h3{
+  color: black;
+}
+.productFrontRow img{
+  flex: 1 1 calc(20% - 20px);
+  width: 100%;
+  max-width: 175px;
+  min-width: 150px;
+  height: auto;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.productFrontRow button{
+  padding: 20px;
+  margin-top: 15px;
+  font-size: larger;
 }
 
 footer {
@@ -235,15 +279,16 @@ footer img{
   width: 500px;
   padding: 100px;
   margin: 10vw 30vw 10vw 30vw;
-  margin-top: 3vw;
-  z-index: 1;
+  margin-top: 200px;
+  z-index: 1;  
+  box-shadow: 10px 10px 5px rgb(85, 86, 86)
 }
 
 .loginsignup-form input{
   margin: 45px;
   height: 30px;
   width: 300px;
-
+  box-shadow: 10px 10px 5px rgb(85, 86, 86);
   cursor:text;
   background-color: rgb(223, 217, 211);
   border-radius: 30px;
@@ -257,9 +302,14 @@ footer img{
   margin-left: 100px;
   cursor: pointer;
   text-align: center;
+  box-shadow: 10px 10px 5px rgb(85, 86, 86)
 }
 
 #signinbutton {
   padding-left: 120px;
   padding-right: 120px;
 }
+
+
+/* UpdateProduct.jsx*/
+
