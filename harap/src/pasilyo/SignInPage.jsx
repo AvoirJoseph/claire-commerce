@@ -34,7 +34,8 @@ const SignInPage = () => {
         e.preventDefault()
         try{
             await axios.post("http://localhost:8800/usertable", userTable)
-            navigate(`/userprofile/${userTable.userName}`)
+            navigate(`/frontpage`)
+            // navigate(`/userprofile/${userTable.userName}`)
             } catch(err){
             alert(err)
             }

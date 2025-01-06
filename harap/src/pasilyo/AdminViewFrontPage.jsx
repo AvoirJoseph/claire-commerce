@@ -103,14 +103,16 @@ const AdminViewFrontPage = () => {
             
             filteredProducts.map((product) => (
                 <div key={product.productID} className="productFrontRow">
+
+                  <div className = "frontrowimage">
                   <img src={`http://localhost:8800/uploads/${product.productImage1}`} alt={product.productName} />
-                  
+                  </div>
                   <h3> {product.productName} </h3>
 
                   <p> Quantity: {product.productQuantity}</p>
                   <p> PHP {product.productPrice}</p>
-                  <button > <Link to = {`/UpdateProduct/${product.productID}`}> Update </Link></button>
-                  <button className = 'delete' onClick = {() => handleDelete(product.productID)}> Delete </button>
+                  <button> <Link to = {`/UpdateProduct/${product.productID}`}> Update </Link></button>
+                  <button id = "delete" onClick = {() => handleDelete(product.productID)}> Delete </button>
                 </div>
               ))
             ) : (

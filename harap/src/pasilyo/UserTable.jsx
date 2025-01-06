@@ -17,8 +17,12 @@ import YoutubeLogo from "./Images/YoutubeLogo.png";
 
 const UserTable = () => {
 
-    const [UserTable, setUserTable] = useState([])
-
+    const [userTable, setUserTable] = useState([])
+    
+    const [searchQuery, setSearchQuery] = useState(""); 
+    const filteredProducts = userTable.filter((userTable) =>
+        userTable.userName.toLowerCase().includes(searchQuery.toLowerCase()))
+    
     useEffect(() => {
         const fetchAllUser = async() => {
             try{
@@ -89,32 +93,36 @@ const UserTable = () => {
                             <source src = {BGVideo} type = "video/mp4" />
                         </video>
                         <div className = "search-bar">
-                            <input type = "text" placeholder = "Search for excellence" />
+                            <input type = "text" placeholder = "Search for excellence" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}  />
                             <img src = {Search} alt = "Search" id = "search"  onClick={clickProfileLogo} />
                         </div> 
                  </div>
 
                  <div className ="productShowCase">
-          
-                <h1> User | Vendors </h1>
+                <div className = "buttonsbeforecolumn">
+                <button> User </button> <button> Vendors </button>
                 
                 <button>
                     <Link to = "/AddUser"> Add New User </Link>
                 </button>
+                </div>
 
-                <div className ="productFrontColumn">
-
-                    {UserTable.map((userTable) => (
-                        <div key = {UserTable.userID} className = "productFrontRow">
-                        <img src={`http://localhost:8800/images/${userTable.image}`} alt = {userTable.UserName}/>
+                <div className ="productFrontColumn">{
+                    filteredProducts.length > 0 ? (
+                    filteredProducts.map((userTable) => (
+                        <div key = {userTable.userID} className = "productFrontRow">
+                        <div className = "frontrowimage">
+                            <img src={`http://localhost:8800/uploads/${userTable.image}`} alt = {userTable.UserName}/>
+                        </div>
                             <h2> {userTable.userName} </h2>
 
                             <p>Account created at {userTable.createdAt}</p>
                         
                         <button className = 'delete' onClick = {() => handleDelete(userTable.userID)}> Delete </button>
                         <button className = 'update' > <Link to = {`/UpdateUser/${userTable.userID}`}> Update </Link> </button>
-                    </div>
-                    ))}
+                        </div>
+                    ))) : ( <p> User does not match any existing users</p>)}
+                    
                 </div>
                 </div>
 

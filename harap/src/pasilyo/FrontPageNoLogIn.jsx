@@ -14,8 +14,9 @@ import InstagramLogo from "./Images/InstagramLogo.png";
 import YoutubeLogo from "./Images/YoutubeLogo.png";
 
 const FrontPageNoLogin = () => {
-
   const [products, setProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); // Add state for search query
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -30,11 +31,16 @@ const FrontPageNoLogin = () => {
 
   const reload = () => {
     window.location.reload();
-  }
+  };
 
   const clickProfileLogo = () => {
     window.location.href = "http://localhost:3000/LogInPage/";
-  }
+  };
+
+  // Filter products based on the search query
+  const filteredProducts = products.filter((product) =>
+    product.productName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="background-background-background">
@@ -61,27 +67,43 @@ const FrontPageNoLogin = () => {
         </div>
         {/* Nav Bar */}
 
-        <div className = "body-below-nav">
-          <video autoPlay muted loop preload = "auto" id = "bgVideo">
-            <source src = {BGVideo} type = "video/mp4" />
+        <div className="body-below-nav">
+          <video autoPlay muted loop preload="auto" id="bgVideo">
+            <source src={BGVideo} type="video/mp4" />
           </video>
 
-          <div className = "search-bar">
-            <input type = "text" placeholder = "Search for excellence" />
-            <img src = {Search} alt = "Search" id = "search"  onClick={clickProfileLogo} />
+          {/* Search Bar */}
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search for excellence"
+              value={searchQuery} // Bind the input to searchQuery state
+              onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
+            />
+            <img src={Search} alt="Search" id="search" onClick={clickProfileLogo} />
           </div>
-        </div>  
-        
-        <div className ="productShowCase">
-          <div className ="productFrontColumn">
-            {products.map((product) => (
-              <div key = {product.productID} className = "productFrontRow">
-                <img src = {`http://localhost:8800/uploads/${product.productImage1}`} alt = {product.productName}  onClick = {clickProfileLogo} />
-                <h3> {product.productName} </h3>
-                <p> Quantity: {product.productQuantity}</p>
-                <p> PHP {product.productPrice}</p>
-              </div>
-            ))}
+        </div>
+
+        <div className="productShowCase">
+          <div className="productFrontColumn">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <div key={product.productID} className="productFrontRow">
+                  <div className="frontrowimage">
+                    <img
+                      src={`http://localhost:8800/uploads/${product.productImage1}`}
+                      alt={product.productName}
+                      onClick={clickProfileLogo}
+                    />
+                  </div>
+                  <h3> {product.productName} </h3>
+                  <p> Quantity: {product.productQuantity}</p>
+                  <p> PHP {product.productPrice}</p>
+                </div>
+              ))
+            ) : (
+              <p>No products match your search query.</p> // Handle empty search results
+            )}
           </div>
         </div>
 
@@ -89,7 +111,7 @@ const FrontPageNoLogin = () => {
           <span>&copy; 2025 Clair. All Rights Reserved 2024. </span>
           <a href="https://facebook.com/AvoirJoseph"> <img src={FacebookLogo} alt="Facebook" /></a>
           <a href="https://x.com/AvoirJoseph"> <img src={XLogo} alt="X" /></a>
-          <a href="https://instagram.com/AvoirJoseph"> <img src={InstagramLogo} alt="Instagram" /></a> 
+          <a href="https://instagram.com/AvoirJoseph"> <img src={InstagramLogo} alt="Instagram" /></a>
           <a href="https://youtube.com/@AvoirJoseph"> <img src={YoutubeLogo} alt="YouTube" /></a>
         </footer>
       </div>

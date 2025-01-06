@@ -116,6 +116,82 @@ app.get("/products", (req, res) => {
   });
 });
 
+app.post("/login", (req, res) => {
+  const { userName, password } = req.body;
+  const query = "SELECT * FROM usertable WHERE userName = ?";
+  
+  db.query(query, [userName], (err, data) => {
+      if (err) return res.status(500).json(err);
+      if (data.length === 0) return res.status(404).json("User not found");
+      
+      const user = data[0];
+
+      // Check if it's the admin user
+      if (userName === 'admin' && password === 'admin') {
+          return res.status(200).json({ success: true, message: "Admin logged in successfully", isAdmin: true });
+      }
+
+      if(password !== user.password) {
+          return res.status(401).json("Invalid Password");
+      }
+
+      // Regular user login
+      res.status(200).json({ success: true, message: "Logged in successfully", isAdmin: false });
+  });
+});
+
+app.get("/products", (req, res) => {
+  const query = "SELECT * FROM product";
+  db.query(query, (err, data) => {
+      if (err) return res.status(500).json(err);
+      return res.status(200).json(data);
+  });
+});
+
+app.put("/usertable/:userID", (req, res) => {
+  const userID = req.params.userID;
+  const query = "UPDATE usertable SET userName = ?, password = ?, image = ? WHERE userID = ?";
+  
+  const values = [req.body.userName, req.body.password, req.body.image];
+  
+  db.query(query, [...values, userID], (err, data) => {
+      if (err) return res.json(err);
+      return res.json("User Successfully Updated!");
+  });
+});
+
+app.get("/", (req, res) => {
+  res.json("This is the backend server.");
+});
+
+app.get("/usertable", (req, res) => {
+  const query = "SELECT * FROM usertable";
+  db.query(query, (err, data) => {
+      if (err) return res.json(err);
+      return res.json(data);
+  });
+});
+
+app.post("/usertable", (req, res) => {
+  const query = "INSERT INTO usertable (userName, password) VALUES (?, ?)";
+  const values = [req.body.userName, req.body.password];
+  
+  db.query(query, values, (err, data) => {
+      if (err) return res.status(500).json(err);
+      return res.status(201).json("User added successfully");
+  });
+});
+
+app.delete("/usertable/:userID", (req, res) => {
+  const userID = req.params.userID;
+  const query = "DELETE FROM usertable WHERE userID = ?";
+  
+  db.query(query, [userID], (err, data) => {
+      if (err) return res.json(err);
+      return res.json("User Successfully deleted");
+  });
+});
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(port, () => {

@@ -95,3 +95,11 @@ Table: productList
 Table: followList            
 
 Create tokens ata yun to verify if logged in na si user or just browsing with no account
+
+Table: cart
+
+        has:
+            - userID
+            - productID
+            - productName
+            - cartItemQuantity (All)

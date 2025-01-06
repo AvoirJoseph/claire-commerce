@@ -1,45 +1,49 @@
-import React, { useState, useEffect } from "react";
-import './AnotherCSS.css';
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from "react"
+import './AnotherCSS.css'
+import { Link } from "react-router-dom"
+import axios from "axios"
 
-import Clair from "./Images/CLAIR-Logo.png";
-import Profile from "./Images/Profile.png";
-import Search from "./Images/Search Logo.png";
-import BGVideo from "./Images/BG-Video.mp4"; // bawal 2gb and up huhu
+import Clair from "./Images/CLAIR-Logo.png"
+import Profile from "./Images/Profile.png"
+import Search from "./Images/Search Logo.png"
+import BGVideo from "./Images/BG-Video.mp4" // bawal 2gb and up huhu
+import Arrow from "./Images/arrow.png"
+import X from "./Images/X.png"
+import Cart from "./Images/cart.png"
 
-import FacebookLogo from "./Images/FacebookLogo.png";
-import XLogo from "./Images/XLogo.png";
-import InstagramLogo from "./Images/InstagramLogo.png";
-import YoutubeLogo from "./Images/YoutubeLogo.png";
+import FacebookLogo from "./Images/FacebookLogo.png"
+import XLogo from "./Images/XLogo.png"
+import InstagramLogo from "./Images/InstagramLogo.png"
+import YoutubeLogo from "./Images/YoutubeLogo.png"
+
 
 const FrontPage = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:8800/products");
-        console.log(res.data);
-        setProducts(res.data);
+        const res = await axios.get("http://localhost:8800/products")
+        console.log(res.data)
+        setProducts(res.data)
       } catch (err) {
-        console.error(err);
+        console.error(err)
       }
     };
     fetchProducts();
   }, []);
 
   const reload = () => {
-    window.location.reload();
+    window.location.reload()
   };
 
   const clickProfileLogo = () => {
-    window.location.href = "http://localhost:3000/LogInPage/";
+    window.location.href = "http://localhost:3000/LogInPage/"
   };
 
-  const [searchQuery, setSearchQuery] = useState(""); 
+  const [searchQuery, setSearchQuery] = useState("")
   const filteredProducts = products.filter((product) =>
-    product.productName.toLowerCase().includes(searchQuery.toLowerCase()));
+    product.productName.toLowerCase().includes(searchQuery.toLowerCase()))
 
   return (
     <div className="background-background-background">
@@ -53,7 +57,7 @@ const FrontPage = () => {
           <div className="navbar-right-side">
             <ul>
               <li> <Link to="/FrontPage"> Home </Link></li>
-              <li> <Link to="/Profile/UserCart"> Cart </Link></li>
+              <li> <img src = {Cart} id = "cart"/></li>
               <li> <Link to="/UserProfile"> Profile </Link></li>
             </ul>
           </div>
@@ -79,6 +83,35 @@ const FrontPage = () => {
           </div>
         </div>
 
+
+
+
+
+
+{/** ADD TO CART*/}
+
+
+
+
+        <div className = "AddToCart">
+
+          <div className = "HiddenAddToCart">
+            <img src = {Arrow} id = "arrow"/>
+              <div className = "grayOut">
+                <div className = "AddToCartMenu">
+                  
+
+                </div>
+               </div>
+          </div>
+
+        </div>
+
+
+{/** ADD TO CART*/}
+
+
+
         <div className="productShowCase">
           <h1> Come check our deals from vetted vendors! </h1>
           <div className="productFrontColumn"> {/** if no products, say no products found */}
@@ -86,7 +119,9 @@ const FrontPage = () => {
             
             filteredProducts.map((product) => (
                 <div key={product.productID} className="productFrontRow">
+                  <div className = "frontrowimage">
                   <img src={`http://localhost:8800/uploads/${product.productImage1}`} alt={product.productName} />
+                  </div>
                   <h3> {product.productName} </h3>
                   <p> Quantity: {product.productQuantity}</p>
                   <p> PHP {product.productPrice}</p>
